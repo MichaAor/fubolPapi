@@ -1,2 +1,7 @@
-package com.company.System;public class Menu {
+package com.company.System;
+
+public class Menu {
+
+
+
 }
