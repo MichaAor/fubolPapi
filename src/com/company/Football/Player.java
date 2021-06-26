@@ -1,8 +1,13 @@
 package com.company.Football;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Objects;
 
-public class Player {
+
+
+public class Player implements Comparable<Player> {
+    private String id;
     private String name;
     private String teamName;
     private int dorsal;
@@ -12,11 +17,16 @@ public class Player {
     private int playerClass;
     private String typeOfSkill;
     private String classProgress;
-    private String prejection;
+    private String projection;
     private String status;
 
-    public Player(String name, String teamName, int dorsal, double value, String nationality, String position, int playerClass, String typeOfSkill,
+    public Player(String id, double value){
+        this.id = id;
+        this.value = value;
+    }
+    public Player(String id, String name, String teamName, int dorsal, double value, String nationality, String position, int playerClass, String typeOfSkill,
                   String classProgress, String prejection, String status) {
+        this.id = id;
         this.name = name;
         this.teamName = teamName;
         this.dorsal = dorsal;
@@ -26,8 +36,16 @@ public class Player {
         this.playerClass = playerClass;
         this.typeOfSkill = typeOfSkill;
         this.classProgress = classProgress;
-        this.prejection = prejection;
+        this.projection = prejection;
         this.status = status;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -102,12 +120,12 @@ public class Player {
         this.classProgress = classProgress;
     }
 
-    public String getPrejection() {
-        return prejection;
+    public String getProjection() {
+        return projection;
     }
 
-    public void setPrejection(String prejection) {
-        this.prejection = prejection;
+    public void setProjection(String projection) {
+        this.projection = projection;
     }
 
     public String getStatus() {
@@ -123,17 +141,18 @@ public class Player {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return dorsal == player.dorsal && Double.compare(player.value, value) == 0 && playerClass == player.playerClass && Objects.equals(name, player.name) && Objects.equals(teamName, player.teamName) && Objects.equals(nationality, player.nationality) && Objects.equals(position, player.position) && Objects.equals(typeOfSkill, player.typeOfSkill) && Objects.equals(classProgress, player.classProgress) && Objects.equals(prejection, player.prejection) && Objects.equals(status, player.status);
+        return dorsal == player.dorsal && Double.compare(player.value, value) == 0 && playerClass == player.playerClass && Objects.equals(name, player.name) && Objects.equals(teamName, player.teamName) && Objects.equals(nationality, player.nationality) && Objects.equals(position, player.position) && Objects.equals(typeOfSkill, player.typeOfSkill) && Objects.equals(classProgress, player.classProgress) && Objects.equals(projection, player.projection) && Objects.equals(status, player.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, teamName, dorsal, value, nationality, position, playerClass, typeOfSkill, classProgress, prejection, status);
+        return Objects.hash(name, teamName, dorsal, value, nationality, position, playerClass, typeOfSkill, classProgress, projection, status);
     }
 
     @Override
     public String toString() {
         return "Player{" +
+                "Id = " + id +
                 "name='" + name + '\'' +
                 ", teamName='" + teamName + '\'' +
                 ", dorsal=" + dorsal +
@@ -143,8 +162,21 @@ public class Player {
                 ", playerClass=" + playerClass +
                 ", typeOfSkill='" + typeOfSkill + '\'' +
                 ", classProgress='" + classProgress + '\'' +
-                ", prejection='" + prejection + '\'' +
+                ", projection='" + projection + '\'' +
                 ", status='" + status + '\'' +
                 '}';
     }
+
+    @Override
+    public int compareTo(Player p){
+        if(p.getValue()>this.value){
+            return -1;
+        }else if(p.getValue()==this.value){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+
+
 }
